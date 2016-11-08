@@ -1,0 +1,27 @@
+{
+  "name": "fed-foot-stats",
+  "version": "1.0.0",
+  "description": "Federative football statistics visualization",
+  "author": "Damir Melnikov",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-once": "^0.1.9",
+    "angular-route": "^1.5.8",
+    "autoprefixer": "^6.5.1",
+    "coffee-script": "^1.11.1",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-coffee": "^2.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-postcss": "^6.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "jquery": "^3.1.1",
+    "lodash": "^4.16.6",
+    "moment": "^2.15.2"
+  }
+}

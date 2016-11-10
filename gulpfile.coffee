@@ -39,6 +39,9 @@ vendors =
     'node_modules/angular-once/once.js'
     'node_modules/lodash/lodash.js'
     'node_modules/moment/min/moment.min.js'
+    'bower_components/tabletop/src/tabletop.js'
+    'bower_components/angular-tabletop/TabletopProvider.js'
+
   ]
   styles: []
 

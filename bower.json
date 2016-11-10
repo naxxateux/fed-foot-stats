@@ -1,0 +1,10 @@
+{
+  "name": "fed-foot-stats",
+  "version": "1.0.0",
+  "description": "Federative football statistics visualization",
+  "author": "Damir Melnikov",
+  "dependencies": {
+    "angular-tabletop": "^0.2.2",
+    "tabletop": "^1.4.3"
+  }
+}

@@ -7,7 +7,8 @@
     "angular": "^1.5.8",
     "angular-once": "^0.1.9",
     "angular-route": "^1.5.8",
-    "autoprefixer": "^6.5.1",
+    "autoprefixer": "^6.5.3",
+    "bower": "^1.8.0",
     "coffee-script": "^1.11.1",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
@@ -22,6 +23,6 @@
     "gulp-util": "^3.0.7",
     "jquery": "^3.1.1",
     "lodash": "^4.16.6",
-    "moment": "^2.15.2"
+    "moment": "^2.16.0"
   }
 }

@@ -13,10 +13,10 @@ app = angular
         key: 'https://docs.google.com/spreadsheets/d/1UO4yK0TcEfXTVMM2XqlTQ2tdrpHExDoNJO-k0IuQUWk/pubhtml'
 
       $routeProvider
-        .when '/table',
-          controller: 'TableController as table'
-          templateUrl: 'pages/table.html'
-        .otherwise redirectTo: '/table'
+        .when '/main',
+          controller: 'MainController as main'
+          templateUrl: 'pages/main.html'
+        .otherwise redirectTo: '/main'
 
       $locationProvider.html5Mode true
       return

@@ -42,11 +42,11 @@ app.controller 'MainController', ($scope, $location, Tabletop, Tools) ->
   # Load spreadsheet and parse seasons data
   Tabletop.then (ttdata) ->
     spreadsheet = ttdata[0]
-    seasons = _.keys spreadsheet
-    $scope.season = Tools.last(seasons) unless $scope.season
+    $scope.seasons = _.keys spreadsheet
+    $scope.season = Tools.last($scope.seasons) unless $scope.season
     $scope.data = {}
 
-    for season in seasons
+    for season in $scope.seasons
       $scope.data[season] = parseSeasonData spreadsheet[season]
 
     $scope.isInitialized = true

@@ -1,3 +1,16 @@
 <div
   class="main-page"
-  data-ng-if="isInitialized"></div>
+  data-ng-if="isInitialized">
+  <div class="main-page__header-container">
+    <header
+      data-seasons="seasons"
+      data-season="season">
+    </header>
+  </div>
+  <div class="main-page__players-table-container">
+    <players-table
+      data-data="data"
+      data-season="season">
+    </players-table>
+  </div>
+</div>

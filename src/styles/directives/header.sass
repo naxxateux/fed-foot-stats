@@ -1,6 +1,95 @@
 @import '../variables'
 
+$font-size: 48px
+
+$font-color: #000
+$selector-color: #77dd77
+$item-hover-color: #30c230
+
+.header
+  color: $font-color
+
+  font-family: $istok-web
+  font-size: $font-size
+  line-height: 60px
+
+.header__logo
+  width: 100px
+  height: 100px
+  background: url(../img/logo.png) top left no-repeat #fff
+  background-size: 100px 100px
+
 .header__caption
-  font-family: $rubik
-  font-size: 42px
-  font-weight: 300
+  margin: 25px 0 0 15px
+
+.header__season-selector-container
+  position: relative
+
+  margin: 25px 0 0 15px
+  cursor: pointer
+  user-select: none
+
+.header__selector-toggle
+  position: relative
+  z-index: 100
+
+  overflow: hidden
+
+  box-sizing: border-box
+  max-width: 700px
+  padding: 0 24px 0 6px
+
+  white-space: nowrap
+  text-overflow: ellipsis
+
+  border-radius: 6px
+
+  background-color: $selector-color
+
+.header__selector-toggle.activated
+  border-radius: 6px 6px 0 0
+
+.header__selector-toggle::after
+  position: absolute
+  top: 50%
+  right: 6px
+
+  content: ''
+  transform: translateY(-50%)
+
+  border-top: 10px solid $font-color
+  border-right: 6px solid transparent
+  border-bottom: none
+  border-left: 6px solid transparent
+
+.header__selector-toggle.activated::after
+  border-top: none
+  border-right: 6px solid transparent
+  border-bottom: 10px solid $font-color
+  border-left: 6px solid transparent
+
+.header__selector-dropdown
+  position: absolute
+  z-index: 99
+
+  overflow: auto
+
+  max-width: 700px
+
+  border-radius: 0 0 6px 6px
+
+  background-color: $selector-color
+
+.header__selector-dropdown-item
+  position: relative
+
+  overflow: hidden
+
+  box-sizing: border-box
+  padding-left: 6px
+
+  white-space: nowrap
+  text-overflow: ellipsis
+
+.header__selector-dropdown-item:not(.selected):hover
+  background-color: $item-hover-color

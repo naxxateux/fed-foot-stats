@@ -1,5 +1,23 @@
 <div class="header">
-  <div class="header__caption inline">ФЕДЕРАТИВНЫЙ ЧЕМПИОНАТ</div>
-  <div class="header__season-selector inline"></div>
+  <div class="header__logo inline"></div>
+  <div class="header__caption inline">Федеративный чемпионат</div>
+  <div
+    class="header__season-selector-container inline"
+    data-ng-style="{'visibility': isSelectorPrepared ? 'visible' : 'hidden'}">
+    <div
+      class="header__selector-toggle"
+      data-ng-class="{'activated': isDropdownShown}"
+      data-ng-click="toggleDropdown()">{{season}}</div>
+    <div
+      class="header__selector-dropdown"
+      data-ng-style="{'visibility': isDropdownShown ? 'visible' : 'hidden'}">
+      <div
+        class="header__selector-dropdown-item"
+        data-ng-repeat="item in seasons track by $index"
+        data-ng-if="item !== season"
+        data-ng-class="{'selected': isItemSelected(item)}"
+        data-ng-click="selectItem(item)">{{item}}</div>
+    </div>
+  </div>
   <br class="clear-both" />
 </div>

@@ -18,7 +18,6 @@ sources =
   coffee: 'src/app/**/*.coffee'
   templates: 'src/templates/**/*.html'
   index: 'src/index.html'
-  favicon: 'src/img/favicon.ico'
   img: 'src/img/**/*'
   data: 'src/data/**/*'
 
@@ -26,7 +25,6 @@ destinations =
   styles: 'public/styles'
   scripts: 'public/scripts'
   index: 'public'
-  favicon: 'public'
   img: 'public/img'
   data: 'public/data'
 
@@ -71,11 +69,6 @@ gulp.task 'data', ->
 gulp.task 'img', ->
   gulp.src sources.img
     .pipe gulp.dest destinations.img
-  return
-
-gulp.task 'favicon', ->
-  gulp.src sources.favicon
-    .pipe gulp.dest destinations.favicon
   return
 
 gulp.task 'scripts:vendor', ->
@@ -134,7 +127,6 @@ gulp.task 'build', [
   'index'
   'data'
   'img'
-  'favicon'
   'scripts:vendor'
   'styles:vendor'
   'scripts:app'

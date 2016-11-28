@@ -1,4 +1,4 @@
-app.controller 'MainController', ($scope, $location, Tabletop, Tools) ->
+app.controller 'MainController', ($scope, $location, $timeout, Tabletop, Tools) ->
   $scope.season = $location.search()['season']
 
   # Parse season data
@@ -50,5 +50,9 @@ app.controller 'MainController', ($scope, $location, Tabletop, Tools) ->
       $scope.data[season] = parseSeasonData spreadsheet[season]
 
     $scope.isInitialized = true
+
+    $timeout ->
+      $('.loading-cover').fadeOut()
+    , 500
     return
   return

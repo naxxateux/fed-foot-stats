@@ -5,9 +5,8 @@ app.directive 'header', ($document, $timeout) ->
   scope:
     seasons: '='
     season: '='
-    adjustWidth: '='
   link: ($scope, $element, $attrs) ->
-    $scope.isSelectorPrepared = not $scope.adjustWidth
+    $scope.isSelectorPrepared = false
     $scope.isDropdownShown = false
 
     clickHandler = (event) ->
@@ -27,27 +26,20 @@ app.directive 'header', ($document, $timeout) ->
         $document.unbind 'click', clickHandler
       return
 
-    $scope.isItemSelected = (item) ->
-      item is $scope.season
-
     $scope.selectItem = (item) ->
       $scope.season = item
       $scope.isDropdownShown = false
       return
 
-    if $scope.adjustWidth
-      $timeout ->
-        $toggle = $element.find '.header__selector-toggle'
-        $dropdown = $element.find '.header__selector-dropdown'
-        toggleWidth = $toggle[0].getBoundingClientRect().width
-        dropdownWidth = $dropdown[0].getBoundingClientRect().width
-        dropdownHasScroll = $dropdown[0].scrollHeight > $dropdown[0].offsetHeight
+    $timeout ->
+      $toggle = $element.find '.header__selector-toggle'
+      $dropdown = $element.find '.header__selector-dropdown'
+      toggleWidth = $toggle[0].getBoundingClientRect().width
+      dropdownWidth = $dropdown[0].getBoundingClientRect().width
 
-        dropdownWidth += 16 if dropdownHasScroll
-
-        $toggle.innerWidth Math.max toggleWidth, dropdownWidth
-        $dropdown.width Math.max toggleWidth, dropdownWidth
-        $scope.isSelectorPrepared = true
-        return
+      $toggle.innerWidth Math.max toggleWidth, dropdownWidth
+      $dropdown.innerWidth Math.max toggleWidth, dropdownWidth
+      $scope.isSelectorPrepared = true
+      return
 
     return

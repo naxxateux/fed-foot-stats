@@ -15,7 +15,6 @@
         class="header__selector-dropdown-item"
         data-ng-repeat="item in seasons track by $index"
         data-ng-if="item !== season"
-        data-ng-class="{'selected': isItemSelected(item)}"
         data-ng-click="selectItem(item)">{{item}}</div>
     </div>
   </div>

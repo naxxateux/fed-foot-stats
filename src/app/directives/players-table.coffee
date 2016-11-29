@@ -5,5 +5,5 @@ app.directive 'playersTable', ->
   scope:
     data: '='
     season: '='
-  link: ($scope, $element, $attrs) ->
+  link: ($scope) ->
     return

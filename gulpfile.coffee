@@ -37,11 +37,13 @@ vendors =
     'node_modules/angular-once/once.js'
     'node_modules/lodash/lodash.js'
     'node_modules/moment/min/moment.min.js'
+    'node_modules/ilyabirman-likely/release/likely.js'
     'bower_components/tabletop/src/tabletop.js'
     'bower_components/angular-tabletop/TabletopProvider.js'
-
   ]
-  styles: []
+  styles: [
+    'node_modules/ilyabirman-likely/release/likely.css'
+  ]
 
 # Tasks
 gulp.task 'clean', ->

@@ -5,7 +5,7 @@ app.directive 'header', ($document, $timeout, Tools) ->
   scope:
     seasons: '='
     season: '='
-  link: ($scope, $element, $attrs) ->
+  link: ($scope, $element) ->
     $scope.isSelectorPrepared = false
     $scope.isDropdownShown = false
 

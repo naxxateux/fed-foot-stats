@@ -1,5 +1,5 @@
-app.controller 'MainController', ($scope, $location, $timeout, Tabletop, Tools) ->
-  $scope.season = $location.search()['season']
+app.controller 'MainController', ($scope, $timeout, Tabletop, Tools) ->
+  $scope.season = Tools.getUrlParameter 'season'
 
   # Parse season data
   parseSeasonData = (seasonSheet) ->
@@ -44,6 +44,7 @@ app.controller 'MainController', ($scope, $location, $timeout, Tabletop, Tools) 
     spreadsheet = ttdata[0]
     $scope.seasons = _.keys spreadsheet
     $scope.season = Tools.last($scope.seasons) unless $scope.season
+    Tools.setUrlParameter 'season', $scope.season
     $scope.data = {}
 
     for season in $scope.seasons

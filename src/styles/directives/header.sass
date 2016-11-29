@@ -1,6 +1,5 @@
 @import '../variables'
 
-$font-size: 42px
 $font-color: #000
 $selector-color: #77dd77
 $item-hover-color: #30c230
@@ -9,31 +8,20 @@ $item-hover-color: #30c230
   color: $font-color
 
   font-family: $helvetica
-  font-size: $font-size
-  line-height: 60px
+  font-size: 42px
 
 .header__season-selector-container
-  position: relative
-
   margin-left: 15px
+
   cursor: pointer
   user-select: none
 
 .header__selector-toggle
   position: relative
-  z-index: 100
 
-  overflow: hidden
-
-  box-sizing: border-box
-  max-width: 700px
   padding: 0 24px 0 6px
 
-  white-space: nowrap
-  text-overflow: ellipsis
-
   border-radius: 6px
-
   background-color: $selector-color
 
 .header__selector-toggle.activated
@@ -64,22 +52,11 @@ $item-hover-color: #30c230
 
   overflow: auto
 
-  max-width: 700px
-
   border-radius: 0 0 6px 6px
-
   background-color: $selector-color
 
 .header__selector-dropdown-item
-  position: relative
-
-  overflow: hidden
-
-  box-sizing: border-box
   padding-left: 6px
-
-  white-space: nowrap
-  text-overflow: ellipsis
 
 .header__selector-dropdown-item:not(.selected):hover
   background-color: $item-hover-color

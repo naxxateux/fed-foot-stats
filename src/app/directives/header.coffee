@@ -1,4 +1,4 @@
-app.directive 'header', ($document, $timeout, Tools) ->
+app.directive 'header', ($document, $timeout) ->
   restrict: 'E'
   replace: true
   templateUrl: 'directives/header.html'
@@ -29,7 +29,6 @@ app.directive 'header', ($document, $timeout, Tools) ->
     $scope.selectItem = (item) ->
       $scope.season = item
       $scope.isDropdownShown = false
-      Tools.setUrlParameter 'season', item
       return
 
     $timeout ->

@@ -1,5 +1,6 @@
-app.controller 'MainController', ($scope, $timeout, Tabletop, Tools) ->
-  $scope.season = Tools.getUrlParameter 'season'
+app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
+  $scope.model =
+    season: Tools.getUrlParameter 'season'
 
   # Parse season data
   parseSeasonData = (seasonSheet) ->
@@ -43,8 +44,7 @@ app.controller 'MainController', ($scope, $timeout, Tabletop, Tools) ->
   Tabletop.then (ttdata) ->
     spreadsheet = ttdata[0]
     $scope.seasons = _.keys spreadsheet
-    $scope.season = Tools.last($scope.seasons) unless $scope.season
-    Tools.setUrlParameter 'season', $scope.season
+    $scope.model.season = Tools.last($scope.seasons) unless $scope.model.season
     $scope.data = {}
 
     for season in $scope.seasons
@@ -56,4 +56,11 @@ app.controller 'MainController', ($scope, $timeout, Tabletop, Tools) ->
       $('.loading-cover').fadeOut()
     , 500
     return
+
+  # Watchers
+  $scope.$watch 'model.season', ->
+    Tools.setUrlParameter 'season', $scope.model.season
+    $window.document.title = 'Статистика Федеративного чемпионата ' + $scope.model.season
+    return
+
   return

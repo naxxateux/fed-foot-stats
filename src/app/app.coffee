@@ -16,6 +16,7 @@ app = angular
         .when '/main',
           controller: 'MainController as main'
           templateUrl: 'pages/main.html'
+          reloadOnSearch: false
         .otherwise redirectTo: '/main'
 
       $locationProvider.html5Mode true

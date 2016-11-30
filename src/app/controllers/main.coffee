@@ -4,39 +4,67 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
 
   # Parse season data
   parseSeasonData = (seasonSheet) ->
-    matchDays = _.tail _.keys seasonSheet['column_names']
-    matchDays = matchDays.map (d) -> parseInt d
-    matchDates = seasonSheet['elements'][0]
-    matchResults = seasonSheet['elements'][1]
+    matchDays = _.values seasonSheet['elements'][0]
+      .filter (d) -> d isnt 'Тур' and d isnt 'x'
+      .map (d) -> parseInt d
+    matchDates = _.values seasonSheet['elements'][1]
+      .filter (d) -> d isnt 'Дата' and d isnt 'x'
+      .map (d) -> moment d, 'DD.MM.YYYY'
+    matchResults = _.values seasonSheet['elements'][2]
+      .filter (d) -> d isnt 'Счёт (б:к)' and d isnt 'x'
+      .map (d) ->
+        result = d.split ':'
+        whites: parseInt result[0]
+        reds: parseInt result[1]
     matches = []
-    players = []
 
-    for day in matchDays
-      date = moment matchDates[day], 'DD/MM/YYYY'
-      matchResult = matchResults[day].split ':'
-      result =
-        whites: parseInt matchResult[0]
-        reds: parseInt matchResult[1]
+    for day, i in matchDays
+      date = matchDates[i]
+      result = matchResults[i]
 
       matches.push {day, date, result}
 
-    for i in [2...seasonSheet['elements'].length]
-      playerData = seasonSheet['elements'][i]
-      fullName = playerData['Тур'].split ' '
-      firstName = fullName[1]
-      lastName = fullName[0]
+    players = []
+
+    for i in [3...seasonSheet['elements'].length]
+      playerData = _.values seasonSheet['elements'][i]
+
+      break unless playerData[0]
+
+      fullName = playerData[0].split ' '
+      firstName = fullName[0]
+      lastName = fullName[1]
       matchStats = []
 
-      for day in matchDays
-        playerMatchData = playerData[day].split ','
-        result = playerMatchData[0]
-        goals = Tools.preventNaN parseInt playerMatchData[1]
-        assists = Tools.preventNaN parseInt playerMatchData[2]
-        ownGoals = Tools.preventNaN parseInt playerMatchData[3]
+      for day, i in matchDays
+        index = i * 3 + 1
+        result = playerData[index]
+        result = undefined if result is 'x'
+        goals = Tools.preventNaN parseInt playerData[index + 1]
+        ownGoals = Tools.countCharOccurancies playerData[index + 1], 'а'
+        assists = Tools.preventNaN parseInt playerData[index + 2]
 
-        matchStats.push {day, result, goals, assists, ownGoals}
+        matchStats.push {day, result, goals, ownGoals, assists}
 
-      players.push {firstName, lastName, matchStats}
+      overallStats = {}
+      overallStats.games = matchStats
+        .filter (match) -> match.result
+        .length
+      overallStats.won = matchStats
+        .filter (match) -> match.result is 'в'
+        .length
+      overallStats.drawn = matchStats
+        .filter (match) -> match.result is 'н'
+        .length
+      overallStats.lost = matchStats
+        .filter (match) -> match.result is 'п'
+        .length
+      overallStats.points = overallStats.won * 3 + overallStats.drawn * 1
+      overallStats.goals = _.sum matchStats.map (match) -> match.goals
+      overallStats.ownGoals = _.sum matchStats.map (match) -> match.ownGoals
+      overallStats.assists = _.sum matchStats.map (match) -> match.assists
+
+      players.push {firstName, lastName, overallStats, matchStats}
 
     {matches, players}
 

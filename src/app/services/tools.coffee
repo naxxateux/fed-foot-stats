@@ -10,6 +10,10 @@ app.factory 'Tools', ($location) ->
   preventNaN = (v) ->
     if isNaN(v) then 0 else v
 
+  countCharOccurancies = (string, char) ->
+    re = new RegExp char, 'g'
+    (string.match(re) or []).length
+
   getUrlParameter = (parameter) ->
     $location.search()[parameter]
 
@@ -22,3 +26,4 @@ app.factory 'Tools', ($location) ->
   preventNaN: preventNaN
   getUrlParameter: getUrlParameter
   setUrlParameter: setUrlParameter
+  countCharOccurancies: countCharOccurancies

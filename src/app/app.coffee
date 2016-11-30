@@ -10,7 +10,7 @@ app = angular
     '$routeProvider', '$locationProvider', 'TabletopProvider'
     ($routeProvider, $locationProvider, TabletopProvider) ->
       TabletopProvider.setTabletopOptions
-        key: 'https://docs.google.com/spreadsheets/d/1UO4yK0TcEfXTVMM2XqlTQ2tdrpHExDoNJO-k0IuQUWk/pubhtml'
+        key: '1UO4yK0TcEfXTVMM2XqlTQ2tdrpHExDoNJO-k0IuQUWk'
 
       $routeProvider
         .when '/main',

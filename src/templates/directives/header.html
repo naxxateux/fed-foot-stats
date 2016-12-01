@@ -14,8 +14,7 @@
         class="dropdown-item"
         data-ng-repeat="item in seasons track by $index"
         data-ng-if="item !== season"
-        data-ng-click="selectItem(item)"
-        once-text="item"></div>
+        data-ng-click="selectItem(item)">{{item}}</div>
     </div>
   </div>
   <br class="clear-both" />

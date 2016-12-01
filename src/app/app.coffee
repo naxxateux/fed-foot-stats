@@ -1,6 +1,5 @@
 appDependencies = [
   'ngRoute'
-  'once'
   'times.tabletop'
 ]
 

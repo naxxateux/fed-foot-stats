@@ -28,12 +28,13 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
 
     for i in [3...seasonSheet['elements'].length]
       playerData = _.values seasonSheet['elements'][i]
+      fullName = playerData[0]
 
-      break unless playerData[0]
+      break unless fullName
 
-      fullName = playerData[0].split ' '
-      firstName = fullName[0]
-      lastName = fullName[1]
+      splittedFullName = fullName.split(' ')
+      firstName = splittedFullName[0]
+      lastName = splittedFullName[1]
       matchStats = []
 
       for day, i in matchDays
@@ -64,7 +65,7 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
       overallStats.ownGoals = _.sum matchStats.map (match) -> match.ownGoals
       overallStats.assists = _.sum matchStats.map (match) -> match.assists
 
-      players.push {firstName, lastName, overallStats, matchStats}
+      players.push {fullName, firstName, lastName, overallStats, matchStats}
 
     {matches, players}
 

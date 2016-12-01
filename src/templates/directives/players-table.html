@@ -1,40 +1,49 @@
 <div class="players-table">
-  <table>
-    <thead>
-      <tr>
-        <th class="expand"></th>
-        <th class="position"></th>
-        <th class="player textual">Игрочишка</th>
-        <th class="points textual">Очки</th>
-        <th class="games textual">Сыграл</th>
-        <th class="won textual">В</th>
-        <th class="drawn textual">Н</th>
-        <th class="lost textual">П</th>
-        <th class="goals textual">Забил</th>
-        <th class="assists textual">Отдал</th>
-        <th class="form textual">Последние матчи</th>
-      </tr>
-    </thead>
+  <div
+    class="sticky-header-container"
+    data-ng-class="{'stuck': headerIsStuck}">
+    <table class="sticky-header">
+      <tbody>
+        <tr>
+          <td class="position"></td>
+          <td class="player textual">Игрочишка</td>
+          <td class="points textual">Очки</td>
+          <td class="games textual">Игры</td>
+          <td class="won textual">В</td>
+          <td class="drawn textual">Н</td>
+          <td class="lost textual">П</td>
+          <td class="goals textual">Забил</td>
+          <td class="assists textual">Отдал</td>
+          <td class="form textual">Последние матчи</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <table
+    class="rows"
+    data-ng-class="{'with-offset': headerIsStuck}">
     <tbody>
       <tr
         class="common-row"
-        data-ng-repeat-start="player in data[season].players">
-        <td class="expand"></td>
-        <td class="position numerical"></td>
-        <td class="player numerical"></td>
-        <td class="points numerical"></td>
-        <td class="games numerical"></td>
-        <td class="won numerical"></td>
-        <td class="drawn numerical"></td>
-        <td class="lost numerical"></td>
-        <td class="goals numerical"></td>
-        <td class="assists numerical"></td>
-        <td class="form numerical"></td>
+        data-ng-repeat-start="player in data[season].players track by $index">
+        <td class="position numerical">{{$index + 1}}</td>
+        <td class="player textual">
+          <div class="photo" data-ng-style="{'background-image': 'url(\'../img/players/' + player.fullName + '.png\')'}"></div>
+          <div class="name">{{player.fullName}}</div>
+        </td>
+        <td class="points numerical">{{player.overallStats.points}}</td>
+        <td class="games numerical">{{player.overallStats.games}}</td>
+        <td class="won numerical">{{player.overallStats.won}}</td>
+        <td class="drawn numerical">{{player.overallStats.drawn}}</td>
+        <td class="lost numerical">{{player.overallStats.lost}}</td>
+        <td class="goals numerical">{{player.overallStats.goals}}</td>
+        <td class="assists numerical">{{player.overallStats.assists}}</td>
+        <td class="form"></td>
       </tr>
       <tr
         class="expandable-row"
         data-ng-repeat-end
-        data-ng-if="true">
+        data-ng-if="isExpanded">
         <td class="detailed-info"></td>
       </tr>
     </tbody>

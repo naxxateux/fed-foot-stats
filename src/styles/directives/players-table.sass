@@ -1,23 +1,149 @@
 @import '../variables'
 
+.players-table
+  margin-left: -30px
+
 .players-table table
   border-spacing: 0
 
-.players-table table th
-  padding: 0
-  font-size: 16px
-  font-weight: normal
-
 .players-table table td
   padding: 0
+  box-sizing: border-box
 
 .players-table .numerical
-  font-size: 12px
+  font-size: 16px
   font-family: $pt-mono
   text-align: right
 
 .players-table .textual
   font-family: $helvetica-neue
+
+.players-table .sticky-header-container
+  display: table
+  border-bottom: 1px rgba(0, 0, 0, .167) solid
+
+.players-table .sticky-header-container.stuck
+  position: fixed
+  top: 0
+  background-color: #fff
+  z-index: 1
+
+.players-table .sticky-header td
+  font-size: 18px
+  height: 32px
+
+.players-table .rows.with-offset
+  padding-top: 33px
+
+.players-table .rows .common-row
+  height: 32px
+  transition: background-color 0.1s ease-out
+
+.players-table .rows .common-row:hover
+  background-color: #f5f5f5
+
+.players-table .rows .common-row td:first-child
+  border-radius: 3px 0 0 3px
+
+.players-table .rows .common-row td:last-child
+  border-radius: 0 3px 3px 0
+
+.players-table .rows .common-row td
+  vertical-align: bottom
+  padding-bottom: 5px
+
+.players-table .rows .textual
+  font-size: 16px
+
+.players-table .position
+  width: 30px
+
+.players-table .rows .position
+  padding-right: 10px
+
+.players-table .player
+  position: relative
+  width: 300px
+
+.players-table .player .photo
+  position: absolute
+  width: 24px
+  height: 24px
+  top: 6px
+  background-color: #ccc
+  background-size: 32px 32px
+  background-position: center
+  border-radius: 12px
+
+.players-table .player .name
+  margin-left: 34px
+
+.players-table .points
+  width: 60px
+
+.players-table .sticky-header .points
+  text-align: center
+
+.players-table .rows .points
+  padding-right: 20px
+
+.players-table .games
+  width: 60px
+
+.players-table .sticky-header .games
+  text-align: center
+
+.players-table .rows .games
+  padding-right: 20px
+
+.players-table .won
+  width: 40px
+
+.players-table .sticky-header .won
+  text-align: center
+
+.players-table .rows .won
+  padding-right: 10px
+
+.players-table .drawn
+  width: 40px
+
+.players-table .sticky-header .drawn
+  text-align: center
+
+.players-table .rows .drawn
+  padding-right: 15px
+
+.players-table .lost
+  width: 40px
+
+.players-table .sticky-header .lost
+  text-align: center
+
+.players-table .rows .lost
+  padding-right: 10px
+
+.players-table .goals
+  width: 70px
+
+.players-table .sticky-header .goals
+  text-align: center
+
+.players-table .rows .goals
+  padding-right: 25px
+
+.players-table .assists
+  width: 70px
+
+.players-table .sticky-header .assists
+  text-align: center
+
+.players-table .rows .assists
+  padding-right: 25px
+
+.players-table .form
+  width: 180px
+  padding-left: 10px
 
 .players-table .detailed-info
   colspan: 11

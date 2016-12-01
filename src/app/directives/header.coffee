@@ -32,8 +32,8 @@ app.directive 'header', ($document, $timeout) ->
       return
 
     $timeout ->
-      $toggle = $element.find '.header__selector-toggle'
-      $dropdown = $element.find '.header__selector-dropdown'
+      $toggle = $element.find '.toggle'
+      $dropdown = $element.find '.dropdown'
       toggleWidth = $toggle[0].getBoundingClientRect().width
       dropdownWidth = $dropdown[0].getBoundingClientRect().width
 

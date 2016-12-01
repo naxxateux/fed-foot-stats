@@ -10,13 +10,13 @@ $item-hover-color: #30c230
   font-family: $helvetica
   font-size: 42px
 
-.header__season-selector-container
+.header .season-selector
   margin-left: 15px
 
   cursor: pointer
   user-select: none
 
-.header__selector-toggle
+.header .toggle
   position: relative
 
   padding: 0 24px 0 6px
@@ -24,10 +24,10 @@ $item-hover-color: #30c230
   border-radius: 6px
   background-color: $selector-color
 
-.header__selector-toggle.activated
+.header .toggle.activated
   border-radius: 6px 6px 0 0
 
-.header__selector-toggle::after
+.header .toggle::after
   position: absolute
   top: 50%
   right: 6px
@@ -40,13 +40,13 @@ $item-hover-color: #30c230
   border-bottom: none
   border-left: 6px solid transparent
 
-.header__selector-toggle.activated::after
+.header .toggle.activated::after
   border-top: none
   border-right: 6px solid transparent
   border-bottom: 10px solid $font-color
   border-left: 6px solid transparent
 
-.header__selector-dropdown
+.header .dropdown
   position: absolute
   z-index: 99
 
@@ -55,8 +55,8 @@ $item-hover-color: #30c230
   border-radius: 0 0 6px 6px
   background-color: $selector-color
 
-.header__selector-dropdown-item
+.header .dropdown-item
   padding-left: 6px
 
-.header__selector-dropdown-item:not(.selected):hover
+.header .dropdown-item:not(.selected):hover
   background-color: $item-hover-color

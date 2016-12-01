@@ -2,20 +2,41 @@
   <table>
     <thead>
       <tr>
-        <th class="more"></th>
+        <th class="expand"></th>
         <th class="position"></th>
-        <th class="player">Игрочишка</th>
-        <th class="points">Очки</th>
-        <th class="games">Сыграл</th>
-        <th class="won">В</th>
-        <th class="drawn">Н</th>
-        <th class="lost">П</th>
-        <th class="goals">Забил</th>
-        <th class="assists">Отдал</th>
-        <th class="form">Последние матчи</th>
+        <th class="player textual">Игрочишка</th>
+        <th class="points textual">Очки</th>
+        <th class="games textual">Сыграл</th>
+        <th class="won textual">В</th>
+        <th class="drawn textual">Н</th>
+        <th class="lost textual">П</th>
+        <th class="goals textual">Забил</th>
+        <th class="assists textual">Отдал</th>
+        <th class="form textual">Последние матчи</th>
       </tr>
     </thead>
     <tbody>
+      <tr
+        class="common-row"
+        data-ng-repeat-start="player in data[season].players">
+        <td class="expand"></td>
+        <td class="position numerical"></td>
+        <td class="player numerical"></td>
+        <td class="points numerical"></td>
+        <td class="games numerical"></td>
+        <td class="won numerical"></td>
+        <td class="drawn numerical"></td>
+        <td class="lost numerical"></td>
+        <td class="goals numerical"></td>
+        <td class="assists numerical"></td>
+        <td class="form numerical"></td>
+      </tr>
+      <tr
+        class="expandable-row"
+        data-ng-repeat-end
+        data-ng-if="true">
+        <td class="detailed-info"></td>
+      </tr>
     </tbody>
   </table>
 </div>

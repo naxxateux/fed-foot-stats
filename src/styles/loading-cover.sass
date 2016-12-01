@@ -8,3 +8,24 @@
   height: 100%
 
   background-color: #fff
+
+@keyframes rotation
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
+
+.loading-cover__ball
+  position: absolute
+  top: 50%
+  left: 50%
+
+  width: 50px
+  height: 50px
+
+  transform: translate(-50%, -50%)
+  animation: rotation 2s linear infinite
+
+  background-color: #fff
+  background-image: url('../img/ball.png')
+  background-size: 50px 50px

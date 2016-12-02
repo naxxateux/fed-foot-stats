@@ -6,14 +6,54 @@
       <tbody>
         <tr>
           <td class="position"></td>
-          <td class="player textual">Игрочишка</td>
-          <td class="points textual">Очки</td>
-          <td class="games textual">Игры</td>
-          <td class="won textual">В</td>
-          <td class="drawn textual">Н</td>
-          <td class="lost textual">П</td>
-          <td class="goals textual">Забил</td>
-          <td class="assists textual">Отдал</td>
+          <td class="player textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'player' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('player')">Игрочишка</span>
+          </td>
+          <td class="points textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'points' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('points')">Очки</span>
+          </td>
+          <td class="games textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'games' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('games')">Сыграл</span>
+          </td>
+          <td class="won textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'won' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('won')">В</span>
+          </td>
+          <td class="drawn textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'drawn' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('drawn')">Н</span>
+          </td>
+          <td class="lost textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'lost' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('lost')">П</span>
+          </td>
+          <td class="goals textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'goals' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('goals')">Забил</span>
+          </td>
+          <td class="assists textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'assists' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('assists')">Отдал</span>
+          </td>
           <td class="form textual">Последние матчи</td>
         </tr>
       </tbody>
@@ -25,7 +65,7 @@
     <tbody>
       <tr
         class="common-row"
-        data-ng-repeat-start="player in data[season].players track by $index">
+        data-ng-repeat-start="player in data[season].players | orderBy:(predicate === 'points' ? ['overallStats.points', 'overallStats.games'] : predicate === 'player' ? ['lastName', 'firstName'] : ('overallStats.' + predicate)):reverse track by $index">
         <td class="position numerical">{{$index + 1}}</td>
         <td class="player textual">
           <div class="photo" data-ng-style="{'background-image': 'url(\'../img/players/' + player.fullName + '.png\')'}"></div>

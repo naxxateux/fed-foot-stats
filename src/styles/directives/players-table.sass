@@ -7,36 +7,62 @@
   border-spacing: 0
 
 .players-table table td
-  padding: 0
   box-sizing: border-box
+  padding: 0
 
 .players-table .numerical
-  font-size: 16px
-  font-family: $pt-mono
   text-align: right
+
+  font-family: $pt-mono
+  font-size: 16px
 
 .players-table .textual
   font-family: $helvetica-neue
 
 .players-table .sticky-header-container
   display: table
+
   border-bottom: 1px rgba(0, 0, 0, .167) solid
 
 .players-table .sticky-header-container.stuck
   position: fixed
-  top: 0
-  background-color: #fff
   z-index: 1
+  top: 0
+
+  background-color: #fff
 
 .players-table .sticky-header td
-  font-size: 18px
   height: 36px
+
+  font-size: 18px
+
+.players-table .sticky-header .sortable
+  position: relative
+
+  cursor: pointer
+  user-select: none
+
+.players-table .sticky-header .sortable::after
+  position: absolute
+  right: -10px
+
+  line-height: 1
+
+.players-table .sticky-header .sortable:not(.ascending):hover:after
+  content: '↑'
+
+.players-table .sticky-header .sortable.ascending:after
+  content: '↓'
+
+.players-table .sticky-header .sortable.descending:after
+  content: '↑'
 
 .players-table .rows.with-offset
   padding-top: 37px
 
 .players-table .rows .common-row
   height: 36px
+
   transition: background-color 0.1s ease-out
 
 .players-table .rows .common-row:hover
@@ -62,38 +88,41 @@
 
 .players-table .player
   position: relative
+
   width: 300px
 
 .players-table .player .photo
   position: absolute
+  top: 6px
+
   width: 24px
   height: 24px
-  top: 6px
-  background-color: #ccc
-  background-size: 32px 32px
-  background-position: center
+
   border-radius: 12px
+  background-color: #ccc
+  background-position: center
+  background-size: 32px 32px
 
 .players-table .player .name
   margin-left: 34px
 
 .players-table .points
-  width: 65px
+  width: 70px
 
 .players-table .sticky-header .points
   text-align: center
 
 .players-table .rows .points
-  padding-right: 22px
+  padding-right: 25px
 
 .players-table .games
-  width: 65px
+  width: 70px
 
 .players-table .sticky-header .games
   text-align: center
 
 .players-table .rows .games
-  padding-right: 22px
+  padding-right: 25px
 
 .players-table .won
   width: 40px
@@ -145,4 +174,4 @@
   padding-left: 10px
 
 .players-table .detailed-info
-  colspan: 11
+  colspan: 10

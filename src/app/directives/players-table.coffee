@@ -17,4 +17,13 @@ app.directive 'playersTable', ($window, $document) ->
         $scope.$apply()
         return
 
+    # Sorting
+    $scope.predicate = 'points'
+    $scope.reverse = true
+
+    $scope.sortableOnClick = (predicate) ->
+      $scope.reverse = if $scope.predicate is predicate then not $scope.reverse else true
+      $scope.predicate = predicate
+      return
+
     return

@@ -19,7 +19,7 @@ $item-hover-color: #30c230
 .header .toggle
   position: relative
 
-  padding: 0 24px 0 6px
+  padding: 0 30px 0 6px
 
   border-radius: 6px
   background-color: $selector-color
@@ -29,22 +29,20 @@ $item-hover-color: #30c230
 
 .header .toggle::after
   position: absolute
-  top: 50%
-  right: 6px
+  top: 15px
+  right: 5px
+
+  width: 20px
+  height: 20px
 
   content: ''
-  transform: translateY(-50%)
+  transform: rotate(180deg)
 
-  border-top: 10px solid $font-color
-  border-right: 6px solid transparent
-  border-bottom: none
-  border-left: 6px solid transparent
+  background-image: url(../img/accessories/arrow.png)
+  background-size: 20px 20px
 
 .header .toggle.activated::after
-  border-top: none
-  border-right: 6px solid transparent
-  border-bottom: 10px solid $font-color
-  border-left: 6px solid transparent
+  transform: rotate(0deg)
 
 .header .dropdown
   position: absolute

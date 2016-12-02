@@ -1,4 +1,4 @@
-app.directive 'playersTable', ($window, $document) ->
+app.directive 'playersTable', ($window, $document, Tools) ->
   restrict: 'E'
   replace: true
   templateUrl: 'directives/players-table.html'
@@ -24,6 +24,17 @@ app.directive 'playersTable', ($window, $document) ->
     $scope.sortableOnClick = (predicate) ->
       $scope.reverse = if $scope.predicate is predicate then not $scope.reverse else true
       $scope.predicate = predicate
+      return
+
+    # Get champion
+    $scope.$watch 'season', ->
+      sortedTable = $scope.data[$scope.season].players.sort (a, b) ->
+        return -1 if a.overallStats.points > b.overallStats.points
+        return 1 if a.overallStats.points < b.overallStats.points
+        return -1 if a.overallStats.games > b.overallStats.games
+        return 1 if a.overallStats.games < b.overallStats.games
+        0
+      $scope.champion = Tools.first(sortedTable)?.fullName
       return
 
     return

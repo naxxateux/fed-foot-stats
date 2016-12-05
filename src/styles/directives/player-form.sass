@@ -1,0 +1,28 @@
+.player-form .match-circle
+  box-sizing: border-box
+  width: 16px
+  height: 16px
+
+  border-radius: 8px
+
+.player-form .match-circle.won
+  background-color: #13cf00
+
+.player-form .match-circle.drawn
+  background-color: #76766f
+
+.player-form .match-circle.lost
+  background-color: #d81920
+
+.player-form .match-circle.missed
+  border: 1px solid #ccc
+  background-color: #fff
+
+.player-form .match-circle.won:hover,
+.player-form .match-circle.drawn:hover,
+.player-form .match-circle.lost:hover,
+.player-form .match-circle.missed:hover
+  border: 1px solid #333
+
+.player-form .match-circle:not(:first-child)
+  margin-left: 10px

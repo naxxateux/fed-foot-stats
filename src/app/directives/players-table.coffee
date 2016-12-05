@@ -2,9 +2,6 @@ app.directive 'playersTable', ($window, $document, Tools) ->
   restrict: 'E'
   replace: true
   templateUrl: 'directives/players-table.html'
-  scope:
-    data: '='
-    season: '='
   link: ($scope) ->
     # Sticky header
     $stickyHeaderContainer = $('.sticky-header-container')
@@ -27,18 +24,21 @@ app.directive 'playersTable', ($window, $document, Tools) ->
       return
 
     # Expand
-    $scope.expandButtonClick = (index) ->
-      isExpanded = $scope.expanded.indexOf(index) isnt -1
+    $scope.expandButtonClick = (player) ->
+      isExpanded = $scope.expandedPlayers[player.fullName]
 
       if isExpanded
-        _.pull $scope.expanded, index
+        _.unset $scope.expandedPlayers, player.fullName
       else
-        $scope.expanded.push index
+        $scope.expandedPlayers[player.fullName] = player.matchStats
       return
 
-    # Watchers
-    $scope.$watch 'season', ->
-      $scope.players = $scope.data[$scope.season].players.sort (a, b) ->
+    # Season change
+    $scope.$on 'seasonIsChanged', (event, seasonData) ->
+      $scope.expandedPlayers = {}
+      $scope.lastMatches = {}
+
+      $scope.players = seasonData.players.sort (a, b) ->
         d = a.overallStats.points - b.overallStats.points
         return d if d
         d = a.overallStats.games - b.overallStats.games
@@ -53,7 +53,10 @@ app.directive 'playersTable', ($window, $document, Tools) ->
         return 1 if a.firstName < b.firstName
 
       $scope.champion = Tools.last($scope.players).fullName
-      $scope.expanded = []
+
+      for player in $scope.players
+        pastMatches = player.matchStats.filter (m) -> m.matchData.date.isBefore()
+        $scope.lastMatches[player.fullName] = _.takeRight pastMatches, 5
       return
 
     return

@@ -38,6 +38,7 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
       matchStats = []
 
       for day, i in matchDays
+        matchData = matches[i]
         index = i * 3 + 1
         result = playerData[index]
         result = undefined if result is 'x'
@@ -45,7 +46,7 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
         ownGoals = Tools.countCharOccurancies playerData[index + 1], 'а'
         assists = Tools.preventNaN parseInt playerData[index + 2]
 
-        matchStats.push {day, result, goals, ownGoals, assists}
+        matchStats.push {day, result, goals, ownGoals, assists, matchData}
 
       overallStats = {}
       overallStats.games = matchStats
@@ -82,14 +83,18 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
     $scope.isInitialized = true
 
     $timeout ->
+      $scope.$broadcast 'seasonIsChanged', $scope.data[$scope.model.season]
       $('.loading-cover').fadeOut()
     , 500
     return
 
-  # Watchers
+  # Change season
   $scope.$watch 'model.season', ->
+    return unless $scope.data and $scope.model.season
+
     Tools.setUrlParameter 'season', $scope.model.season
     $window.document.title = 'Статистика Федеративного чемпионата ' + $scope.model.season
+    $scope.$broadcast 'seasonIsChanged', $scope.data[$scope.model.season]
     return
 
   return

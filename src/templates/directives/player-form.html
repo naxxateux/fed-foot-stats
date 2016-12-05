@@ -1,0 +1,8 @@
+<div class="player-form">
+  <div
+    class="match-circle inline"
+    data-ng-repeat="match in matches track by $index"
+    data-ng-class="{'won': match.result === 'в', 'drawn': match.result === 'н', 'lost': match.result === 'п', 'missed': !match.result}">
+  </div>
+  <br class="clear-both" />
+</div>

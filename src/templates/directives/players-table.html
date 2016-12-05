@@ -54,7 +54,7 @@
               data-ng-class="predicate === 'lost' ? (reverse ? 'descending' : 'ascending') : ''"
               data-ng-click="sortableOnClick('lost')">П</span>
           </td>
-          <td class="form textual">Последние матчи</td>
+          <td class="player-form-container textual">Последние матчи</td>
         </tr>
       </tbody>
     </table>
@@ -72,8 +72,8 @@
           <div class="name inline">{{player.fullName}}</div>
           <div
             class="expand-button inline"
-            data-ng-class="{'expanded': expanded.indexOf($index) !== -1}"
-            data-ng-click="expandButtonClick($index)"></div>
+            data-ng-class="{'expanded': expandedPlayers[player.fullName]}"
+            data-ng-click="expandButtonClick(player)"></div>
           <br class="clear-both" />
         </td>
         <td class="points numerical">{{player.overallStats.points}}</td>
@@ -83,11 +83,13 @@
         <td class="won numerical">{{player.overallStats.won}}</td>
         <td class="drawn numerical">{{player.overallStats.drawn}}</td>
         <td class="lost numerical">{{player.overallStats.lost}}</td>
-        <td class="form"></td>
+        <td class="player-form-container">
+          <player-form data-matches="lastMatches[player.fullName]"></player-form>
+        </td>
       </tr>
       <tr
         class="expandable-row"
-        data-ng-if="expanded.indexOf($index) !== -1">
+        data-ng-if="expandedPlayers[player.fullName]">
         <td class="detailed-info"></td>
       </tr>
     </tbody>

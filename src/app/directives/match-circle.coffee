@@ -1,12 +1,12 @@
-app.directive 'playerForm', ($rootScope) ->
+app.directive 'matchCircle', ($rootScope) ->
   restrict: 'E'
   replace: true
-  templateUrl: 'directives/player-form.html'
+  templateUrl: 'directives/match-circle.html'
   scope:
-    matches: '='
+    match: '='
   link: ($scope) ->
-    $scope.matchMouseEnter = (match) ->
-      $rootScope.$broadcast 'matchMouseEnter', match
+    $scope.matchMouseEnter = ->
+      $rootScope.$broadcast 'matchMouseEnter', $scope.match
       return
 
     $scope.matchMouseMove = ($event) ->

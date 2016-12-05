@@ -54,7 +54,7 @@
               data-ng-class="predicate === 'lost' ? (reverse ? 'descending' : 'ascending') : ''"
               data-ng-click="sortableOnClick('lost')">П</span>
           </td>
-          <td class="player-form-container textual">Последние матчи</td>
+          <td class="player-form textual">Последние матчи</td>
         </tr>
       </tbody>
     </table>
@@ -62,17 +62,16 @@
   <table
     class="rows"
     data-ng-class="{'with-offset': headerIsStuck}">
-    <tbody data-ng-repeat="player in players | orderBy:(predicate === 'player' ? ['-lastName', '-firstName'] : predicate !== 'points' ? ['overallStats.' + predicate, '-lastName', '-firstName'] : null):reverse track by $index">
-      <tr
-        class="common-row"
-        data-ng-class="{'champion': player.fullName === champion}">
+    <tbody
+      data-ng-repeat="player in players | orderBy:(predicate === 'player' ? ['-lastName', '-firstName'] : predicate !== 'points' ? ['overallStats.' + predicate, '-lastName', '-firstName'] : null):reverse track by $index"
+      data-ng-class="{'champion': player.fullName === champion, 'expanded': expandedPlayers[player.fullName]}">
+      <tr class="common-row">
         <td class="position numerical">{{$index + 1}}</td>
         <td class="player textual">
           <div class="photo" data-ng-style="{'background-image': 'url(\'../img/players/' + player.fullName + '.png\')'}"></div>
           <div class="name inline">{{player.fullName}}</div>
           <div
             class="expand-button inline"
-            data-ng-class="{'expanded': expandedPlayers[player.fullName]}"
             data-ng-click="expandButtonClick(player)"></div>
           <br class="clear-both" />
         </td>
@@ -83,14 +82,17 @@
         <td class="won numerical">{{player.overallStats.won}}</td>
         <td class="drawn numerical">{{player.overallStats.drawn}}</td>
         <td class="lost numerical">{{player.overallStats.lost}}</td>
-        <td class="player-form-container">
-          <player-form data-matches="lastMatches[player.fullName]"></player-form>
+        <td class="player-form">
+          <match-circle
+            class="inline"
+            data-ng-repeat="match in lastMatches[player.fullName] track by $index"
+            data-match="match"></match-circle>
         </td>
       </tr>
       <tr
         class="expandable-row"
         data-ng-if="expandedPlayers[player.fullName]">
-        <td class="detailed-info"></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

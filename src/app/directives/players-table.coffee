@@ -28,6 +28,8 @@ app.directive 'playersTable', ($window, $document, Tools) ->
 
     # Get champion
     $scope.$watch 'season', ->
+      $scope.players = $scope.data[$scope.season].players
+
       sortedTable = $scope.data[$scope.season].players.sort (a, b) ->
         return -1 if a.overallStats.points > b.overallStats.points
         return 1 if a.overallStats.points < b.overallStats.points

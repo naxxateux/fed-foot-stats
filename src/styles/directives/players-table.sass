@@ -63,6 +63,9 @@
 .players-table .rows .common-row
   height: 36px
 
+.players-table .rows .expandable-row
+  height: 36px
+
 .players-table .rows .common-row.champion
   background-color: #f1f105
 
@@ -108,6 +111,28 @@
 
 .players-table .player .name
   margin-left: 34px
+
+.players-table .player .expand-button
+  display: none
+
+  width: 18px
+  height: 18px
+  margin-left: 10px
+
+  cursor: pointer
+  transform: rotate(180deg)
+
+  background-image: url(../img/accessories/arrow.png)
+  background-repeat: no-repeat
+  background-position: center
+  background-size: 16px 16px
+
+.players-table .player .expand-button.expanded
+  display: block
+  transform: rotate(0deg)
+
+.players-table .rows .common-row:hover .expand-button:not(.expanded)
+  display: block
 
 .players-table .points
   width: 70px

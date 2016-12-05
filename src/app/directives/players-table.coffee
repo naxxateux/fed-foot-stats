@@ -26,17 +26,34 @@ app.directive 'playersTable', ($window, $document, Tools) ->
       $scope.predicate = predicate
       return
 
-    # Get champion
-    $scope.$watch 'season', ->
-      $scope.players = $scope.data[$scope.season].players
+    # Expand
+    $scope.expandButtonClick = (index) ->
+      isExpanded = $scope.expanded.indexOf(index) isnt -1
 
-      sortedTable = $scope.data[$scope.season].players.sort (a, b) ->
-        return -1 if a.overallStats.points > b.overallStats.points
-        return 1 if a.overallStats.points < b.overallStats.points
-        return -1 if a.overallStats.games > b.overallStats.games
-        return 1 if a.overallStats.games < b.overallStats.games
-        0
-      $scope.champion = Tools.first(sortedTable)?.fullName
+      if isExpanded
+        _.pull $scope.expanded, index
+      else
+        $scope.expanded.push index
+      return
+
+    # Watchers
+    $scope.$watch 'season', ->
+      $scope.players = $scope.data[$scope.season].players.sort (a, b) ->
+        d = a.overallStats.points - b.overallStats.points
+        return d if d
+        d = a.overallStats.games - b.overallStats.games
+        return d if d
+        d = a.overallStats.goals - b.overallStats.goals
+        return d if d
+        d = a.overallStats.assists - b.overallStats.assists
+        return d if d
+        return -1 if a.lastName > b.lastName
+        return 1 if a.lastName < b.lastName
+        return -1 if a.firstName > b.firstName
+        return 1 if a.firstName < b.firstName
+
+      $scope.champion = Tools.last($scope.players).fullName
+      $scope.expanded = []
       return
 
     return

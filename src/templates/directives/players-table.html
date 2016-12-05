@@ -24,6 +24,18 @@
               data-ng-class="predicate === 'games' ? (reverse ? 'descending' : 'ascending') : ''"
               data-ng-click="sortableOnClick('games')">Сыграл</span>
           </td>
+          <td class="goals textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'goals' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('goals')">Забил</span>
+          </td>
+          <td class="assists textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'assists' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('assists')">Отдал</span>
+          </td>
           <td class="won textual">
             <span
               class="sortable"
@@ -42,18 +54,6 @@
               data-ng-class="predicate === 'lost' ? (reverse ? 'descending' : 'ascending') : ''"
               data-ng-click="sortableOnClick('lost')">П</span>
           </td>
-          <td class="goals textual">
-            <span
-              class="sortable"
-              data-ng-class="predicate === 'goals' ? (reverse ? 'descending' : 'ascending') : ''"
-              data-ng-click="sortableOnClick('goals')">Забил</span>
-          </td>
-          <td class="assists textual">
-            <span
-              class="sortable"
-              data-ng-class="predicate === 'assists' ? (reverse ? 'descending' : 'ascending') : ''"
-              data-ng-click="sortableOnClick('assists')">Отдал</span>
-          </td>
           <td class="form textual">Последние матчи</td>
         </tr>
       </tbody>
@@ -62,7 +62,7 @@
   <table
     class="rows"
     data-ng-class="{'with-offset': headerIsStuck}">
-    <tbody data-ng-repeat="player in data[season].players | orderBy:(predicate === 'points' ? ['overallStats.points', 'overallStats.games'] : predicate === 'player' ? ['lastName', 'firstName'] : ('overallStats.' + predicate)):reverse track by $index">
+    <tbody data-ng-repeat="player in players | orderBy:(predicate === 'player' ? ['-lastName', '-firstName'] : predicate !== 'points' ? ['overallStats.' + predicate, '-lastName', '-firstName'] : null):reverse track by $index">
       <tr
         class="common-row"
         data-ng-class="{'champion': player.fullName === champion}">
@@ -72,22 +72,22 @@
           <div class="name inline">{{player.fullName}}</div>
           <div
             class="expand-button inline"
-            data-ng-class="{'expanded': isExpanded}"
-            data-ng-click="isExpanded = !isExpanded"></div>
+            data-ng-class="{'expanded': expanded.indexOf($index) !== -1}"
+            data-ng-click="expandButtonClick($index)"></div>
           <br class="clear-both" />
         </td>
         <td class="points numerical">{{player.overallStats.points}}</td>
         <td class="games numerical">{{player.overallStats.games}}</td>
+        <td class="goals numerical">{{player.overallStats.goals}}</td>
+        <td class="assists numerical">{{player.overallStats.assists}}</td>
         <td class="won numerical">{{player.overallStats.won}}</td>
         <td class="drawn numerical">{{player.overallStats.drawn}}</td>
         <td class="lost numerical">{{player.overallStats.lost}}</td>
-        <td class="goals numerical">{{player.overallStats.goals}}</td>
-        <td class="assists numerical">{{player.overallStats.assists}}</td>
         <td class="form"></td>
       </tr>
       <tr
         class="expandable-row"
-        data-ng-if="isExpanded">
+        data-ng-if="expanded.indexOf($index) !== -1">
         <td class="detailed-info"></td>
       </tr>
     </tbody>

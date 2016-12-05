@@ -1,0 +1,54 @@
+@import '../variables'
+
+.tooltip
+  position: fixed
+  z-index: 99
+
+  display: none
+
+  margin: 15px 0 0 15px
+  padding: 5px 5px 5px 10px
+
+  border: 1px solid rgba(0, 0, 0, .167)
+  background-color: #fff
+
+.tooltip.shown
+  display: block
+
+.tooltip .date
+  font-family: $helvetica-neue
+  font-size: 14px
+
+.tooltip .match-result
+  margin: 5px 0 0 -5px
+  padding: 0 5px
+
+  border-radius: 3px
+  background-color: #333
+
+.tooltip .whites,
+.tooltip .colon,
+.tooltip .reds
+  font-family: $pt-mono
+  font-size: 16px
+
+.tooltip .whites
+  color: #fff
+
+.tooltip .colon
+  color: #f5f5f5
+
+.tooltip .reds
+  color: #f00
+
+.tooltip .player-result
+  margin: 5px 0 0 5px
+
+  font-family: $helvetica-neue
+  font-size: 14px
+
+.tooltip .player-actions
+  margin-top: 5px
+
+  font-family: $helvetica-neue
+  font-size: 14px

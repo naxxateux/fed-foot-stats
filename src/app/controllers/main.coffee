@@ -65,6 +65,11 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
       overallStats.goals = _.sum matchStats.map (match) -> match.goals
       overallStats.ownGoals = _.sum matchStats.map (match) -> match.ownGoals
       overallStats.assists = _.sum matchStats.map (match) -> match.assists
+      overallStats.plusMinus = _.sum matchStats.map (match) ->
+        d = Math.abs match.matchData.result.whites - match.matchData.result.reds
+        if match.result is 'в' then d else if match.result is 'п' then -d else 0
+      overallStats.ppg = overallStats.points / overallStats.games
+      overallStats.winPercentage = overallStats.won * 100 / overallStats.games
 
       players.push {fullName, firstName, lastName, overallStats, matchStats}
 

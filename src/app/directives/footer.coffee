@@ -7,11 +7,7 @@ app.directive 'footer', ->
 
     $scope.getCopyrightYears = ->
       endYear = moment().year()
-
-      if endYear is startYear
-        startYear
-      else
-        [startYear, endYear].join '…'
+      if endYear is startYear then startYear else [startYear, endYear].join '…'
 
     likely.initiate()
 

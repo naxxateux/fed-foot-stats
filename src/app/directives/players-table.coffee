@@ -23,6 +23,8 @@ app.directive 'playersTable', ($window, $document, Tools) ->
       $scope.predicate = predicate
       return
 
+    $scope.prepareFullName = (fullName) -> Tools.transliterate fullName
+
     # Expand
     $scope.expandButtonClick = (player) ->
       isExpanded = $scope.expandedPlayers[player.fullName]

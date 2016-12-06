@@ -1,4 +1,4 @@
-app.factory 'Tools', ($location) ->
+app.factory 'Tools', ($location, DICTIONARY) ->
   first = (array) ->
     return unless array and array.length
     array[0]
@@ -21,9 +21,16 @@ app.factory 'Tools', ($location) ->
     $location.search parameter, value
     return
 
+  transliterate = (string) ->
+    string
+      .split ''
+      .map (char) -> if char is ' ' then char else DICTIONARY[char] or ''
+      .join ''
+
   first: first
   last: last
   preventNaN: preventNaN
+  countCharOccurancies: countCharOccurancies
   getUrlParameter: getUrlParameter
   setUrlParameter: setUrlParameter
-  countCharOccurancies: countCharOccurancies
+  transliterate: transliterate

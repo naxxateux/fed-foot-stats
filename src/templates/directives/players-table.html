@@ -67,12 +67,12 @@
       data-ng-class="{'champion': player.fullName === champion, 'expanded': expandedPlayers[player.fullName]}">
       <tr class="common-row">
         <td class="position numerical">{{$index + 1}}</td>
-        <td class="player textual">
+        <td
+          class="player textual"
+          data-ng-click="expandButtonClick(player)">
           <div class="photo" data-ng-style="{'background-image': 'url(\'../img/players/' + prepareFullName(player.fullName) + '.png\')'}"></div>
           <div class="name inline">{{player.fullName}}</div>
-          <div
-            class="expand-button inline"
-            data-ng-click="expandButtonClick(player)"></div>
+          <div class="expand-button inline"></div>
           <br class="clear-both" />
         </td>
         <td class="points numerical">{{player.overallStats.points}}</td>

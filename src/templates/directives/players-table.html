@@ -92,7 +92,9 @@
       <tr
         class="expandable-row"
         data-ng-if="expandedPlayers[player.fullName]">
-        <td></td>
+        <td colspan="10">
+          <detailed-info data-player="player"></detailed-info>
+        </td>
       </tr>
     </tbody>
   </table>

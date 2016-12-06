@@ -1,6 +1,6 @@
 <div
   class="match-circle"
-  data-ng-class="{'won': match.result === 'в', 'drawn': match.result === 'н', 'lost': match.result === 'п', 'missed': !match.result}"
+  data-ng-class="{'won': match.result === 'в', 'drawn': match.result === 'н', 'lost': match.result === 'п', 'missed': !match.result, 'no-match': noMatch()}"
   data-ng-mouseenter="matchMouseEnter()"
   data-ng-mousemove="matchMouseMove($event)"
   data-ng-mouseleave="matchMouseLeave()">

@@ -1,10 +1,26 @@
 @import '../variables'
 
 .detailed-info
+  box-sizing: border-box
   width: 100%
   padding: 10px 0 10px 30px
+
   font-family: $helvetica-neue
   font-size: 16px
 
-.detailed-info div:not(:first-child)
+.detailed-info .additional-stats div:not(:first-child)
   margin-left: 20px
+
+.detailed-info .calendar
+  width: 600px
+
+  column-count: 4
+
+.detailed-info .month
+  margin-top: 15px
+
+.detailed-info .matches
+  margin-top: 5px
+
+.detailed-info .matches .match-circle:not(:first-child)
+  margin-left: 10px

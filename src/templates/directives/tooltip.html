@@ -3,13 +3,22 @@
   data-ng-class="{'shown': isShown}"
   data-ng-style="{'left': coordinates.x + 'px', 'top': coordinates.y + 'px'}">
   <div class="date">{{tooltipData.date}}</div>
-  <div class="match-result inline">
+  <div
+    class="match-result inline"
+    data-ng-if="!tooltipData.noMatch">
     <span class="whites">{{tooltipData.whites}}</span>
     <span class="colon">&#58;</span>
     <span class="reds">{{tooltipData.reds}}</span>
   </div>
-  <div class="player-result inline">{{tooltipData.playerResult}}</div>
-  <br class="clear-both" />
+  <div
+    class="player-result inline"
+    data-ng-if="!tooltipData.noMatch">{{tooltipData.playerResult}}</div>
+  <br
+    class="clear-both"
+    data-ng-if="!tooltipData.noMatch" />
+  <div
+    class="no-match"
+    data-ng-if="tooltipData.noMatch">{{tooltipData.noMatch}}</div>
   <div
     class="player-actions"
     data-ng-if="tooltipData.playerActions">{{tooltipData.playerActions}}</div>

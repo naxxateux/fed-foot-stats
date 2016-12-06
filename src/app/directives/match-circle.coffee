@@ -5,6 +5,9 @@ app.directive 'matchCircle', ($rootScope) ->
   scope:
     match: '='
   link: ($scope) ->
+    $scope.noMatch = ->
+      isNaN($scope.match.matchData.result.whites) and isNaN($scope.match.matchData.result.reds)
+
     $scope.matchMouseEnter = ->
       $rootScope.$broadcast 'matchMouseEnter', $scope.match
       return

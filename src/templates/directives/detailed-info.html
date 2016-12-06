@@ -6,4 +6,18 @@
     <div class="inline">Полезность: {{player.overallStats.pm | plusMinus}}</div>
     <br class="clear-both" />
   </div>
+  <div class="calendar">
+    <div
+      class="month"
+      data-ng-repeat="monthIndex in [11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] track by $index">
+      <div class="caption">{{monthNames[monthIndex]}}</div>
+      <div class="matches">
+        <match-circle
+          class="inline"
+          data-ng-repeat="match in getMonthMatches(monthIndex) track by $index"
+          data-match="match"></match-circle>
+        <br class="clear-both" />
+      </div>
+    </div>
+  </div>
 </div>

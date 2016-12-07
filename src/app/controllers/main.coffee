@@ -96,11 +96,13 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
 
   # Change season
   $scope.$watch 'model.season', ->
-    return unless $scope.data and $scope.model.season
+    return unless $scope.model.season
 
     Tools.setUrlParameter 'season', $scope.model.season
     $window.document.title = 'Статистика Федеративного чемпионата ' + $scope.model.season
-    $scope.$broadcast 'seasonIsChanged', $scope.data[$scope.model.season]
+
+    if $scope.data
+      $scope.$broadcast 'seasonIsChanged', $scope.data[$scope.model.season]
     return
 
   return

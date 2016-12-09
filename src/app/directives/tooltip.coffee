@@ -25,9 +25,15 @@ app.directive 'tooltip', ($rootScope) ->
       $scope.tooltipData.date = data.matchData.date.date() + ' ' + monthNames[data.matchData.date.month()]
       $scope.tooltipData.whites = data.matchData.result.whites
       $scope.tooltipData.reds = data.matchData.result.reds
-      $scope.tooltipData.noMatch = if data.matchData.date.isAfter() then 'Матч еще не проводился'
-      else if isNaN($scope.tooltipData.whites) and isNaN($scope.tooltipData.reds) then 'Результат матча аннулирован'
-      else ''
+      if isNaN($scope.tooltipData.whites) and isNaN($scope.tooltipData.reds)
+        if data.matchData.date.isAfter()
+          $scope.tooltipData.noMatch = 'Матч еще не проводился'
+        else if moment().isSame(data.matchData.date, 'day')
+          $scope.tooltipData.noMatch = 'Матч сегодня'
+        else
+          $scope.tooltipData.noMatch = 'Результат матча аннулирован'
+      else
+        $scope.tooltipData.noMatch = ''
       $scope.tooltipData.playerResult = if data.result is 'в' then 'выиграл'
       else if data.result is 'н' then 'сыграл вничью'
       else if data.result is 'п' then 'проиграл'

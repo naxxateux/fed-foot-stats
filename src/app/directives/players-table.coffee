@@ -43,11 +43,9 @@ app.directive 'playersTable', ($window, $document, Tools) ->
       $scope.players = seasonData.players.sort (a, b) ->
         d = a.overallStats.points - b.overallStats.points
         return d if d
+        d = a.overallStats.pm - b.overallStats.pm
+        return d if d
         d = a.overallStats.games - b.overallStats.games
-        return d if d
-        d = a.overallStats.goals - b.overallStats.goals
-        return d if d
-        d = a.overallStats.assists - b.overallStats.assists
         return d if d
         return -1 if a.lastName > b.lastName
         return 1 if a.lastName < b.lastName

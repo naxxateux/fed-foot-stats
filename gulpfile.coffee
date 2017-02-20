@@ -10,6 +10,7 @@ gulpCssnano = require 'gulp-cssnano'
 gulpPostcss = require 'gulp-postcss'
 gulpSass = require 'gulp-sass'
 gulpUglify = require 'gulp-uglify'
+gulpUncache = require 'gulp-uncache'
 gulpUtil = require 'gulp-util'
 
 # Paths
@@ -58,6 +59,7 @@ gulp.task 'connect', ->
 
 gulp.task 'index', ->
   gulp.src sources.index
+    .pipe gulpUncache()
     .pipe gulp.dest destinations.index
     .pipe gulpConnect.reload()
   return

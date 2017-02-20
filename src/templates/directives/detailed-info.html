@@ -2,8 +2,9 @@
   <div class="additional-stats">
     <div class="inline">{{player.overallStats.wp.toFixed(0)}}% побед</div>
     <div class="inline">{{player.overallStats.ppg.toFixed(1)}} очка за игру</div>
-    <div class="inline">Гол+пас: {{player.overallStats.ga}}</div>
-    <div class="inline">Полезность: {{player.overallStats.pm | plusMinus}}</div>
+    <div class="inline">Выиграл: {{player.overallStats.won}}</div>
+    <div class="inline">Сыграл вничью: {{player.overallStats.drawn}}</div>
+    <div class="inline">Проиграл: {{player.overallStats.lost}}</div>
     <br class="clear-both" />
   </div>
   <div class="calendar">

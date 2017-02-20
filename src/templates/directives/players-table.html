@@ -18,6 +18,12 @@
               data-ng-class="predicate === 'points' ? (reverse ? 'descending' : 'ascending') : ''"
               data-ng-click="sortableOnClick('points')">Очки</span>
           </td>
+          <td class="pm textual">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'pm' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('pm')">+/−</span>
+          </td>
           <td class="games textual">
             <span
               class="sortable"
@@ -36,23 +42,11 @@
               data-ng-class="predicate === 'assists' ? (reverse ? 'descending' : 'ascending') : ''"
               data-ng-click="sortableOnClick('assists')">Отдал</span>
           </td>
-          <td class="won textual">
+          <td class="ga textual">
             <span
               class="sortable"
-              data-ng-class="predicate === 'won' ? (reverse ? 'descending' : 'ascending') : ''"
-              data-ng-click="sortableOnClick('won')">В</span>
-          </td>
-          <td class="drawn textual">
-            <span
-              class="sortable"
-              data-ng-class="predicate === 'drawn' ? (reverse ? 'descending' : 'ascending') : ''"
-              data-ng-click="sortableOnClick('drawn')">Н</span>
-          </td>
-          <td class="lost textual">
-            <span
-              class="sortable"
-              data-ng-class="predicate === 'lost' ? (reverse ? 'descending' : 'ascending') : ''"
-              data-ng-click="sortableOnClick('lost')">П</span>
+              data-ng-class="predicate === 'ga' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('ga')">Г+П</span>
           </td>
           <td class="player-form textual">Последние матчи</td>
         </tr>
@@ -76,12 +70,11 @@
           <br class="clear-both" />
         </td>
         <td class="points numerical">{{player.overallStats.points}}</td>
+        <td class="pm numerical">{{player.overallStats.pm | plusMinus}}</td>
         <td class="games numerical">{{player.overallStats.games}}</td>
         <td class="goals numerical">{{player.overallStats.goals}}</td>
         <td class="assists numerical">{{player.overallStats.assists}}</td>
-        <td class="won numerical">{{player.overallStats.won}}</td>
-        <td class="drawn numerical">{{player.overallStats.drawn}}</td>
-        <td class="lost numerical">{{player.overallStats.lost}}</td>
+        <td class="ga numerical">{{player.overallStats.ga}}</td>
         <td class="player-form">
           <match-circle
             class="inline"

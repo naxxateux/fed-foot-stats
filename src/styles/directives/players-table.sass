@@ -18,7 +18,7 @@
 .players-table .sticky-header-container
   display: table
 
-  border-bottom: 1px rgba(0, 0, 0, .167) solid
+  border-bottom: 1px #f9da8b solid
 
 .players-table .sticky-header-container.stuck
   position: fixed
@@ -68,16 +68,16 @@
 
 .players-table .champion .common-row,
 .players-table .champion .expandable-row
-  background-color: #ffef99
+  background-color: #fcecbc
 
 .players-table tbody:not(.champion) .common-row:hover
   transition: background-color 0.1s ease-out
 
-  background-color: #f5f5f5
+  background-color: #e9ffe9
 
 .players-table .expanded:not(.champion) .common-row,
 .players-table tbody:not(.champion) .expandable-row
-  background-color: #f5f5f5
+  background-color: #e9ffe9
 
 .players-table .common-row td:first-child
   border-radius: 3px 0 0 3px
@@ -97,7 +97,8 @@
 .players-table .position
   width: 30px
 
-  text-align: center
+  text-align: right
+  padding-right: 6px
 
 .players-table .player
   position: relative
@@ -150,11 +151,13 @@
 
   text-align: center
 
-.players-table td.pm,
-.players-table td.ga
-  width: 50px
+.players-table .pm,
+.players-table .ga
+  width: 60px
 
   text-align: center
+
+.players-table .sticky-header td
 
 .players-table .player-form
   width: 160px

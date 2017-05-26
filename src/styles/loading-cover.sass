@@ -16,17 +16,28 @@
     transform: rotate(360deg)
 
 @keyframes shaking
-  0% { transform: translate(2px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(0px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(2px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(2px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+  0%
+    transform: translate(2px, 1px) rotate(0deg)
+  10%
+    transform: translate(-1px, -2px) rotate(-1deg)
+  20%
+    transform: translate(-3px, 0px) rotate(1deg)
+  30%
+    transform: translate(0px, 2px) rotate(0deg)
+  40%
+    transform: translate(1px, -1px) rotate(1deg)
+  50%
+    transform: translate(-1px, 2px) rotate(-1deg)
+  60%
+    transform: translate(-3px, 1px) rotate(0deg)
+  70%
+    transform: translate(2px, 1px) rotate(-1deg)
+  80%
+    transform: translate(-1px, -1px) rotate(1deg)
+  90%
+    transform: translate(2px, 2px) rotate(0deg)
+  100%
+    transform: translate(1px, -2px) rotate(-1deg)
 
 .loading-cover .ball
   position: absolute
@@ -42,7 +53,7 @@
   background-image: url(../img/accessories/ball.png)
   background-size: 50px 50px
 
-.loading-cover .max
+.loading-cover .photo
   position: absolute
   top: 50%
   left: 50%
@@ -51,21 +62,10 @@
   height: 150px
   margin: -75px 0 0 -75px
 
-  animation: rotation 2s linear infinite
-
-  background-image: url(../img/accessories/max.png)
-  background-size: 150px 150px
-
-.loading-cover .alex
-  position: absolute
-  top: 50%
-  left: 50%
-
-  width: 122px
-  height: 150px
-  margin: -75px 0 0 -61px
-
   animation: shaking 0.5s infinite
 
-  background-image: url(../img/accessories/alex.jpg)
-  background-size: 122px 150px
+.loading-cover .max
+  background-image: url(../img/accessories/max.png)
+
+.loading-cover .alex
+  background-image: url(../img/accessories/alex.png)

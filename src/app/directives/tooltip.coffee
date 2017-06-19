@@ -42,7 +42,7 @@ app.directive 'tooltip', ($rootScope) ->
       (if not data.goals then '' else if data.goals is 1 then 'гол' else if data.goals < 5 then 'гола' else 'голов') +
       (if data.assists then (if data.goals then ', ' else '') + data.assists + ' ' else '') +
       (if not data.assists then '' else if data.assists is 1 then 'передача' else if data.assists < 5 then 'передачи' else 'пердач') +
-      (if data.ownGoals then (if data.assists then ', ' else '') + data.ownGoals + ' ' else '') +
+      (if data.ownGoals then (if data.assists or data.goals then ', ' else '') + data.ownGoals + ' ' else '') +
       (if not data.ownGoals then '' else if data.ownGoals is 1 then 'автогол' else if data.ownGoals < 5 then 'автогола' else 'автоголов')
       return
 

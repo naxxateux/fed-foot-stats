@@ -40,17 +40,19 @@ app.directive 'playersTable', ($window, $document, Tools) ->
       $scope.expandedPlayers = {}
       $scope.lastMatches = {}
 
-      $scope.players = seasonData.players.sort (a, b) ->
-        d = a.overallStats.points - b.overallStats.points
-        return d if d
-        d = a.overallStats.pm - b.overallStats.pm
-        return d if d
-        d = a.overallStats.games - b.overallStats.games
-        return d if d
-        return -1 if a.lastName > b.lastName
-        return 1 if a.lastName < b.lastName
-        return -1 if a.firstName > b.firstName
-        return 1 if a.firstName < b.firstName
+      $scope.players = seasonData.players
+        .filter (p) -> p.overallStats.games > 1
+        .sort (a, b) ->
+          d = a.overallStats.points - b.overallStats.points
+          return d if d
+          d = a.overallStats.pm - b.overallStats.pm
+          return d if d
+          d = a.overallStats.games - b.overallStats.games
+          return d if d
+          return -1 if a.lastName > b.lastName
+          return 1 if a.lastName < b.lastName
+          return -1 if a.firstName > b.firstName
+          return 1 if a.firstName < b.firstName
 
       $scope.champion = Tools.last($scope.players).fullName
 

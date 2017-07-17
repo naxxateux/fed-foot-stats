@@ -11,7 +11,7 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
       .filter (d) -> d isnt 'Дата' and d isnt 'x'
       .map (d) -> moment d, 'DD.MM.YYYY'
     matchResults = _.values seasonSheet['elements'][2]
-      .filter (d) -> d isnt 'Счёт (б:к)' and d isnt 'x'
+      .filter (d) -> d isnt 'Счёт (б:к)' and d.indexOf(':') isnt -1 or !d
       .map (d) ->
         result = d.split ':'
         whites: parseInt result[0]

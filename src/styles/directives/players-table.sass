@@ -1,7 +1,7 @@
 @import '../variables'
 
 .players-table
-  margin-left: -30px
+  margin-left: -60px
 
   font-family: $helvetica-neue
 
@@ -95,10 +95,29 @@
   font-size: 16px
 
 .players-table .position
+  width: 60px
+
+.players-table .position .index
   width: 30px
 
   text-align: right
-  padding-right: 6px
+
+.players-table .position .movement
+  visibility: hidden
+
+  margin-top: 4px
+  padding-left: 5px
+
+  font-size: 12px
+
+.players-table .position .movement.visible
+  visibility: visible
+
+.players-table .position .movement.positive
+  color: #0b5
+
+.players-table .position .movement.negative
+  color: #ff5533
 
 .players-table .player
   position: relative

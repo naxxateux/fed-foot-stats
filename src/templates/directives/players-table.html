@@ -57,10 +57,16 @@
     class="rows"
     data-ng-class="{'with-offset': headerIsStuck}">
     <tbody
-      data-ng-repeat="player in players | orderBy:(predicate === 'player' ? ['-lastName', '-firstName'] : predicate !== 'points' ? ['overallStats.' + predicate, '-lastName', '-firstName'] : null):reverse track by $index"
+      data-ng-repeat="player in players | orderBy:(predicate === 'player' ? ['-lastName', '-firstName'] : predicate !== 'points' ? ['overallStats[0].' + predicate, '-lastName', '-firstName'] : null):reverse track by $index"
       data-ng-class="{'champion': player.fullName === champion, 'expanded': expandedPlayers[player.fullName]}">
       <tr class="common-row">
-        <td class="position numerical">{{$index + 1}}</td>
+        <td class="position numerical">
+          <div class="index inline">{{$index + 1}}</div>
+          <div
+            class="movement inline"
+            data-ng-class="{'visible': predicate === 'points' && player.movement, 'positive': player.movement > 0, 'negative': player.movement < 0}">{{player.movement | plusMinus}}</div>
+          <br class="clear-both" />
+        </td>
         <td
           class="player textual"
           data-ng-click="expandButtonClick(player)">
@@ -69,12 +75,12 @@
           <div class="expand-button inline"></div>
           <br class="clear-both" />
         </td>
-        <td class="points numerical">{{player.overallStats.points}}</td>
-        <td class="pm numerical">{{player.overallStats.pm | plusMinus}}</td>
-        <td class="games numerical">{{player.overallStats.games}}</td>
-        <td class="goals numerical">{{player.overallStats.goals}}</td>
-        <td class="assists numerical">{{player.overallStats.assists}}</td>
-        <td class="ga numerical">{{player.overallStats.ga}}</td>
+        <td class="points numerical">{{player.overallStats[0].points}}</td>
+        <td class="pm numerical">{{player.overallStats[0].pm | plusMinus}}</td>
+        <td class="games numerical">{{player.overallStats[0].games}}</td>
+        <td class="goals numerical">{{player.overallStats[0].goals}}</td>
+        <td class="assists numerical">{{player.overallStats[0].assists}}</td>
+        <td class="ga numerical">{{player.overallStats[0].ga}}</td>
         <td class="player-form">
           <match-circle
             class="inline"

@@ -36,6 +36,7 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
       firstName = splittedFullName[0]
       lastName = splittedFullName[1]
       matchStats = []
+      overallStats = []
 
       for day, i in matchDays
         matchData = matches[i]
@@ -48,29 +49,31 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
 
         matchStats.push {day, result, goals, ownGoals, assists, matchData}
 
-      overallStats = {}
-      overallStats.games = matchStats
-        .filter (match) -> match.result
-        .length
-      overallStats.won = matchStats
-        .filter (match) -> match.result is 'в'
-        .length
-      overallStats.drawn = matchStats
-        .filter (match) -> match.result is 'н'
-        .length
-      overallStats.lost = matchStats
-        .filter (match) -> match.result is 'п'
-        .length
-      overallStats.points = overallStats.won * 3 + overallStats.drawn * 1
-      overallStats.goals = _.sum matchStats.map (match) -> match.goals
-      overallStats.ownGoals = _.sum matchStats.map (match) -> match.ownGoals
-      overallStats.assists = _.sum matchStats.map (match) -> match.assists
-      overallStats.ga = overallStats.goals + overallStats.assists
-      overallStats.pm = _.sum matchStats.map (match) ->
-        d = Math.abs match.matchData.result.whites - match.matchData.result.reds
-        if match.result is 'в' then d else if match.result is 'п' then -d else 0
-      overallStats.ppg = overallStats.points / overallStats.games
-      overallStats.wp = overallStats.won * 100 / overallStats.games
+      for i in [0, 1]
+        overallStats[i] = {}
+        currentMatchStats = _.dropRight matchStats, i
+        overallStats[i].games = currentMatchStats
+          .filter (match) -> match.result
+          .length
+        overallStats[i].won = currentMatchStats
+          .filter (match) -> match.result is 'в'
+          .length
+        overallStats[i].drawn = currentMatchStats
+          .filter (match) -> match.result is 'н'
+          .length
+        overallStats[i].lost = currentMatchStats
+          .filter (match) -> match.result is 'п'
+          .length
+        overallStats[i].points = overallStats[i].won * 3 + overallStats[i].drawn * 1
+        overallStats[i].goals = _.sum currentMatchStats.map (match) -> match.goals
+        overallStats[i].ownGoals = _.sum currentMatchStats.map (match) -> match.ownGoals
+        overallStats[i].assists = _.sum currentMatchStats.map (match) -> match.assists
+        overallStats[i].ga = overallStats[i].goals + overallStats[i].assists
+        overallStats[i].pm = _.sum currentMatchStats.map (match) ->
+          d = Math.abs match.matchData.result.whites - match.matchData.result.reds
+          if match.result is 'в' then d else if match.result is 'п' then -d else 0
+        overallStats[i].ppg = overallStats[i].points / overallStats[i].games
+        overallStats[i].wp = overallStats[i].won * 100 / overallStats[i].games
 
       players.push {fullName, firstName, lastName, overallStats, matchStats}
 

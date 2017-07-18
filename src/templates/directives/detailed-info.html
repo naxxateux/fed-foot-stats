@@ -1,10 +1,10 @@
 <div class="detailed-info">
   <div class="additional-stats">
-    <div class="inline">{{player.overallStats.wp.toFixed(0)}}% побед</div>
-    <div class="inline">{{player.overallStats.ppg.toFixed(1)}} очка за игру</div>
-    <div class="inline">Выиграл: {{player.overallStats.won}}</div>
-    <div class="inline">Сыграл вничью: {{player.overallStats.drawn}}</div>
-    <div class="inline">Проиграл: {{player.overallStats.lost}}</div>
+    <div class="inline">{{player.overallStats[0].wp.toFixed(0)}}% побед</div>
+    <div class="inline">{{player.overallStats[0].ppg.toFixed(1)}} очка за игру</div>
+    <div class="inline">Выиграл: {{player.overallStats[0].won}}</div>
+    <div class="inline">Сыграл вничью: {{player.overallStats[0].drawn}}</div>
+    <div class="inline">Проиграл: {{player.overallStats[0].lost}}</div>
     <br class="clear-both" />
   </div>
   <div class="calendar">

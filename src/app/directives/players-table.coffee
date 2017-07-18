@@ -36,24 +36,33 @@ app.directive 'playersTable', ($window, $document, Tools) ->
       return
 
     # Season change
-    $scope.$on 'seasonIsChanged', (event, seasonData) ->
-      $scope.expandedPlayers = {}
-      $scope.lastMatches = {}
-
-      $scope.players = seasonData.players
-        .filter (p) -> p.overallStats.games > 1
+    sortByPoints = (players, stepsBack) ->
+      players
+        .slice()
         .sort (a, b) ->
-          d = a.overallStats.points - b.overallStats.points
+          d = a.overallStats[stepsBack].points - b.overallStats[stepsBack].points
           return d if d
-          d = a.overallStats.pm - b.overallStats.pm
+          d = a.overallStats[stepsBack].pm - b.overallStats[stepsBack].pm
           return d if d
-          d = a.overallStats.games - b.overallStats.games
+          d = a.overallStats[stepsBack].games - b.overallStats[stepsBack].games
           return d if d
           return -1 if a.lastName > b.lastName
           return 1 if a.lastName < b.lastName
           return -1 if a.firstName > b.firstName
           return 1 if a.firstName < b.firstName
 
+    $scope.$on 'seasonIsChanged', (event, seasonData) ->
+      $scope.expandedPlayers = {}
+      $scope.lastMatches = {}
+      previousPlayers = sortByPoints seasonData.players, 1
+      currentPlayers = sortByPoints seasonData.players, 0
+
+      currentPlayers.forEach (p, i) ->
+        previousIndex = _.findIndex previousPlayers, 'fullName': p.fullName
+        p.movement = Tools.preventNaN i - previousIndex
+        return
+
+      $scope.players = currentPlayers
       $scope.champion = Tools.last($scope.players).fullName
 
       for player in $scope.players

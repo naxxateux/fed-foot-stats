@@ -40,6 +40,9 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
 
       for day, i in matchDays
         matchData = matches[i]
+
+        break unless matchData.date.isBefore()
+
         index = i * 3 + 1
         result = playerData[index]
         result = undefined if result is 'x'

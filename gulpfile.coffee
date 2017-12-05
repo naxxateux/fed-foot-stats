@@ -20,14 +20,14 @@ sources =
   templates: 'src/templates/**/*.html'
   index: 'src/index.html'
   img: 'src/img/**/*'
-  data: 'src/data/**/*'
+  fonts: 'src/fonts/**/*'
 
 destinations =
   styles: 'public/styles'
   scripts: 'public/scripts'
   index: 'public'
   img: 'public/img'
-  data: 'public/data'
+  fonts: 'public/fonts'
 
 # Vendors
 vendors =
@@ -64,9 +64,9 @@ gulp.task 'index', ->
     .pipe gulpConnect.reload()
   return
 
-gulp.task 'data', ->
-  gulp.src sources.data
-    .pipe gulp.dest destinations.data
+gulp.task 'fonts', ->
+  gulp.src sources.fonts
+    .pipe gulp.dest destinations.fonts
   return
 
 gulp.task 'img', ->
@@ -128,7 +128,7 @@ gulp.task 'watch', ->
 
 gulp.task 'build', [
   'index'
-  'data'
+  'fonts'
   'img'
   'scripts:vendor'
   'styles:vendor'

@@ -3,7 +3,7 @@
 .players-table
   margin-left: -60px
 
-  font-family: $helvetica-neue
+  font-family: $graphik
 
 .players-table table
   border-spacing: 0
@@ -14,6 +14,9 @@
 
 .players-table .numerical
   font-size: 16px
+
+  font-feature-settings: 'tnum'
+  font-variant-numeric: tabular-nums
 
 .players-table .sticky-header-container
   display: table
@@ -40,18 +43,21 @@
 
 .players-table .sticky-header .sortable:after
   position: absolute
-  right: -10px
+  top: 50%
+  right: -12px
 
-  line-height: 1
+  transform: translateY(-50%)
+
+  color: darkgrey
 
 .players-table .sticky-header .sortable:not(.ascending):hover:after
-  content: '↑'
+  content: '⇡'
 
 .players-table .sticky-header .sortable.ascending:after
-  content: '↓'
+  content: '⇣'
 
 .players-table .sticky-header .sortable.descending:after
-  content: '↑'
+  content: '⇡'
 
 .players-table .rows.with-offset
   padding-top: 37px
@@ -98,11 +104,14 @@
   width: 60px
 
 .players-table .position .index
+  display: inline-block
+
   width: 30px
 
   text-align: right
 
 .players-table .position .movement
+  display: inline-block
   visibility: hidden
 
   margin-top: 4px
@@ -128,10 +137,12 @@
 
 .players-table .player .photo
   position: absolute
-  top: 6px
+  top: 50%
 
   width: 24px
   height: 24px
+
+  transform: translateY(-50%)
 
   border-radius: 12px
   background-color: #ccc
@@ -139,32 +150,38 @@
   background-size: 32px 32px
 
 .players-table .player .name
+  position: relative
+
+  display: inline-block
+
   margin-left: 34px
 
-.players-table .player .expand-button
+.players-table .player .name:after
+  position: absolute
+  top: 50%
+  left: calc(100% + 10px)
+
   display: none
 
-  width: 18px
-  height: 18px
-  margin-left: 5px
-  padding: 0 5px
+  width: 14px
+  height: 14px
 
-  transform: rotate(180deg)
+  content: ''
+  transform: translateY(-50%) rotate(180deg)
 
   background-image: url(../img/accessories/arrow.png)
   background-repeat: no-repeat
   background-position: center
-  background-size: 16px 16px
+  background-size: 14px 14px
 
-.players-table .expanded .player .expand-button
-  transform: rotate(0deg)
+.players-table .expanded .player .name:after
+  transform: translateY(-50%) rotate(0deg)
 
-.players-table .common-row .player:hover .expand-button
+.players-table .common-row .player:hover .name:after
   display: block
 
 .players-table .points,
 .players-table .games,
-.players-table .goals,
 .players-table .assists
   width: 70px
 
@@ -176,11 +193,22 @@
 
   text-align: center
 
+.players-table .goals
+  width: 90px
+  padding-left: 20px
+
+  text-align: center
+
 .players-table .sticky-header td
 
 .players-table .player-form
-  width: 160px
-  padding-left: 10px
+  width: 180px
+  padding-left: 20px
+
+.players-table .player-form .match-circle
+  display: inline-block
+
+  margin-top: 4px
 
 .players-table .player-form .match-circle:not(:first-child)
   margin-left: 10px

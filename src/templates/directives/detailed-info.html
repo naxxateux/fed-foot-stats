@@ -1,11 +1,10 @@
 <div class="detailed-info">
   <div class="additional-stats">
-    <div class="inline">{{player.overallStats[0].wp.toFixed(0)}}% побед</div>
-    <div class="inline">{{player.overallStats[0].ppg.toFixed(1)}} очка за игру</div>
-    <div class="inline">Выиграл: {{player.overallStats[0].won}}</div>
-    <div class="inline">Сыграл вничью: {{player.overallStats[0].drawn}}</div>
-    <div class="inline">Проиграл: {{player.overallStats[0].lost}}</div>
-    <br class="clear-both" />
+    <div>{{player.overallStats[0].wp.toFixed(0)}}% побед</div>
+    <div>{{player.overallStats[0].ppg.toFixed(1)}} очка за игру</div>
+    <div>Выиграл: {{player.overallStats[0].won}}</div>
+    <div>Сыграл вничью: {{player.overallStats[0].drawn}}</div>
+    <div>Проиграл: {{player.overallStats[0].lost}}</div>
   </div>
   <div class="calendar">
     <div
@@ -14,10 +13,8 @@
       <div class="caption">{{monthNames[monthIndex]}}</div>
       <div class="matches">
         <match-circle
-          class="inline"
           data-ng-repeat="match in getMonthMatches(monthIndex) track by $index"
           data-match="match"></match-circle>
-        <br class="clear-both" />
       </div>
     </div>
   </div>

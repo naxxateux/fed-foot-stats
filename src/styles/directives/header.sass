@@ -1,7 +1,9 @@
 @import '../variables'
 
 .header
-  font-family: $helvetica-neue
+  display: flex
+
+  font-family: $graphik
   font-size: 42px
 
 .header .season-selector
@@ -23,14 +25,14 @@
 
 .header .toggle:after
   position: absolute
-  top: 15px
+  top: 50%
   right: 5px
 
-  width: 20px
-  height: 20px
+  width: 18px
+  height: 18px
 
   content: ''
-  transform: rotate(180deg)
+  transform: translateY(-50%) rotate(180deg)
 
   background-image: url(../img/accessories/arrow.png)
   background-repeat: no-repeat
@@ -38,7 +40,7 @@
   background-size: 18px 18px
 
 .header .toggle.activated:after
-  transform: rotate(0deg)
+  transform: translateY(-50%) rotate(0deg)
 
 .header .dropdown
   position: absolute

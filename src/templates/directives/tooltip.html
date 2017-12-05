@@ -4,18 +4,15 @@
   data-ng-style="{'left': coordinates.x + 'px', 'top': coordinates.y + 'px'}">
   <div class="date">{{tooltipData.date}}</div>
   <div
-    class="match-result inline"
+    class="match-result"
     data-ng-if="!tooltipData.noMatch">
     <span class="whites">{{tooltipData.whites}}</span>
     <span class="colon">&#58;</span>
     <span class="reds">{{tooltipData.reds}}</span>
   </div>
   <div
-    class="player-result inline"
+    class="player-result"
     data-ng-if="!tooltipData.noMatch">{{tooltipData.playerResult}}</div>
-  <br
-    class="clear-both"
-    data-ng-if="!tooltipData.noMatch" />
   <div
     class="no-match"
     data-ng-if="tooltipData.noMatch">{{tooltipData.noMatch}}</div>

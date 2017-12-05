@@ -61,19 +61,16 @@
       data-ng-class="{'champion': player.fullName === champion, 'expanded': expandedPlayers[player.fullName]}">
       <tr class="common-row">
         <td class="position numerical">
-          <div class="index inline">{{$index + 1}}</div>
+          <div class="index">{{$index + 1}}</div>
           <div
-            class="movement inline"
+            class="movement"
             data-ng-class="{'visible': predicate === 'points' && player.movement, 'positive': player.movement > 0, 'negative': player.movement < 0}">{{player.movement | plusMinus}}</div>
-          <br class="clear-both" />
         </td>
         <td
           class="player textual"
           data-ng-click="expandButtonClick(player)">
           <div class="photo" data-ng-style="{'background-image': 'url(\'../img/players/' + prepareFullName(player.fullName) + '.png\')'}"></div>
-          <div class="name inline">{{player.fullName}}</div>
-          <div class="expand-button inline"></div>
-          <br class="clear-both" />
+          <div class="name">{{player.fullName}}</div>
         </td>
         <td class="points numerical">{{player.overallStats[0].points}}</td>
         <td class="pm numerical">{{player.overallStats[0].pm | plusMinus}}</td>
@@ -83,7 +80,6 @@
         <td class="ga numerical">{{player.overallStats[0].ga}}</td>
         <td class="player-form">
           <match-circle
-            class="inline"
             data-ng-repeat="match in lastMatches[player.fullName] track by $index"
             data-match="match"></match-circle>
         </td>

@@ -30,6 +30,14 @@
               data-ng-class="predicate === 'games' ? (reverse ? 'descending' : 'ascending') : ''"
               data-ng-click="sortableOnClick('games')">Сыграл</span>
           </td>
+          <td
+            class="votes textual"
+            data-ng-if="+model.season >= 2018">
+            <span
+              class="sortable"
+              data-ng-class="predicate === 'votes' ? (reverse ? 'descending' : 'ascending') : ''"
+              data-ng-click="sortableOnClick('votes')">MVP</span>
+          </td>
           <td class="goals textual">
             <span
               class="sortable"
@@ -75,6 +83,9 @@
         <td class="points numerical">{{player.overallStats[0].points}}</td>
         <td class="pm numerical">{{player.overallStats[0].pm | plusMinus}}</td>
         <td class="games numerical">{{player.overallStats[0].games}}</td>
+        <td
+          class="votes numerical"
+          data-ng-if="+model.season >= 2018">{{player.overallStats[0].votes}}</td>
         <td class="goals numerical">{{player.overallStats[0].goals}}</td>
         <td class="assists numerical">{{player.overallStats[0].assists}}</td>
         <td class="ga numerical">{{player.overallStats[0].ga}}</td>

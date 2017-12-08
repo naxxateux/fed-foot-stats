@@ -43,14 +43,15 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
 
         break unless matchData.date.isBefore()
 
-        index = i * 3 + 1
+        index = i * (if +seasonSheet.name >= 2018 then 4 else 3) + 1
         result = playerData[index]
         result = undefined if result is 'x'
         goals = Tools.preventNaN parseInt playerData[index + 1]
         ownGoals = Tools.countCharOccurancies playerData[index + 1], 'а'
         assists = Tools.preventNaN parseInt playerData[index + 2]
+        votes = if +seasonSheet.name >= 2018 then Tools.preventNaN(parseFloat(playerData[index + 3])) else undefined
 
-        matchStats.push {day, result, goals, ownGoals, assists, matchData}
+        matchStats.push {day, result, goals, ownGoals, assists, votes, matchData}
 
       for i in [0, 1]
         overallStats[i] = {}
@@ -71,6 +72,7 @@ app.controller 'MainController', ($scope, $timeout, $window, Tabletop, Tools) ->
         overallStats[i].goals = _.sum currentMatchStats.map (match) -> match.goals
         overallStats[i].ownGoals = _.sum currentMatchStats.map (match) -> match.ownGoals
         overallStats[i].assists = _.sum currentMatchStats.map (match) -> match.assists
+        overallStats[i].votes = _.sum currentMatchStats.map (match) -> match.votes
         overallStats[i].ga = overallStats[i].goals + overallStats[i].assists
         overallStats[i].pm = _.sum currentMatchStats.map (match) ->
           d = Math.abs match.matchData.result.whites - match.matchData.result.reds

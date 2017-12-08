@@ -38,6 +38,8 @@ app.directive 'tooltip', ($rootScope) ->
       else if data.result is 'н' then 'сыграл вничью'
       else if data.result is 'п' then 'проиграл'
       else 'не играл'
+      $scope.tooltipData.playerVotes = (if data.votes then data.votes + ' ' else '') +
+      (if not data.votes then '' else if data.votes > 4 then 'очков' else if data.votes is 1 then 'очко' else 'очка')
       $scope.tooltipData.playerActions = (if data.goals then data.goals + ' ' else '') +
       (if not data.goals then '' else if data.goals is 1 then 'гол' else if data.goals < 5 then 'гола' else 'голов') +
       (if data.assists then (if data.goals then ', ' else '') + data.assists + ' ' else '') +

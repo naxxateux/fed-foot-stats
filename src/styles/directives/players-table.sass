@@ -44,20 +44,29 @@
 .players-table .sticky-header .sortable:after
   position: absolute
   top: 50%
-  right: -12px
+  right: -15px
 
+  display: none
+
+  width: 12px
+  height: 12px
+
+  content: ''
   transform: translateY(-50%)
 
-  color: darkgrey
-
-.players-table .sticky-header .sortable:not(.ascending):hover:after
-  content: '⇡'
+  background-image: url(../img/accessories/sort.svg)
+  background-repeat: no-repeat
+  background-position: center
+  background-size: 100%
 
 .players-table .sticky-header .sortable.ascending:after
-  content: '⇣'
+  display: block
 
 .players-table .sticky-header .sortable.descending:after
-  content: '⇡'
+  display: block
+
+  transform: translateY(-50%) scaleY(-1)
+
 
 .players-table .rows.with-offset
   padding-top: 37px
